@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Link from "next/link";
+import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
 
 export default function Search() {
@@ -9,13 +9,8 @@ export default function Search() {
         <title>PC GAME DEALS - Search</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <Navbar />
       <h1>search page</h1>
-      <Link href='/'>
-        <a>home</a>
-      </Link>
-      <Link href='/browse'>
-        <a>browse</a>
-      </Link>
     </div>
   );
 }
