@@ -9,6 +9,7 @@
   --primary-white: #bdbdbd;
   --alert-red: #9b1e1e;
   --positive-green: #326520;
+  --small-radius: 0.1rem;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: var(--primary-gray);
 }
 
 code {
@@ -53,6 +55,7 @@ ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  color: var(--primary-white);
 }
 
 input,
@@ -70,4 +73,22 @@ ul {
 img {
   max-width: 100%;
   height: auto;
+}
+
+a {
+  text-decoration: none;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  color: var(--primary-white);
+}
+
+input {
+  background-color: var(--primary-white);
+  border: none;
+  border-radius: var(--small-radius);
+}
+
+.page-container {
+  width: 1200px;
+  margin: 0 auto;
 }
