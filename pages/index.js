@@ -4,13 +4,14 @@ import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>PC GAME DEALS</title>
-        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Navbar />
-      <h1>home page</h1>
+      <div className='page-container'>
+        <h1>home page</h1>
+      </div>
     </div>
   );
 }
