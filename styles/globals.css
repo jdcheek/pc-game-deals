@@ -58,6 +58,10 @@ ul {
   color: var(--primary-white);
 }
 
+li {
+  list-style: none;
+}
+
 input,
 button,
 textarea,
