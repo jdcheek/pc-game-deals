@@ -94,5 +94,12 @@ input {
 
 .page-container {
   width: 1200px;
+  min-width: 400px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .page-container {
+    width: auto;
+  }
 }

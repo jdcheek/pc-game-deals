@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  background-color: var(--primary-white);
+  color: black;
+  border-radius: var(--small-radius);
+  margin: 0.6rem;
+  align-items: center;
+}
+
+.thumb {
+  width: 120px;
+  height: 45px;
+  border-radius: var(--small-radius);
+  margin: 0 2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+}
+
+.info {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px;
+}
+
+.info h1 {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.info span {
+  color: var(--positive-green);
+  font-size: 1.8rem;
+}
+
+.price {
+  margin-left: auto;
+}
+
+.normal {
+  font-size: 1.2rem;
+  text-decoration: line-through;
+  margin: 0 0.5rem;
+}
+
+.sale {
+  font-size: 1.8rem;
+  margin: 0 0.5rem;
+}
+
+.savings {
+  margin: 0 0.5rem;
+  font-size: 1.8rem;
+  color: var(--alert-red);
+}
+
+.arrow {
+  margin: 0 0.5rem;
+}
+
+.link {
+  text-transform: uppercase;
+}

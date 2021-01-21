@@ -25,6 +25,7 @@ export async function getServerSideProps() {
     `https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15&AAA=1`
   );
   const data = await res.json();
+
   return {
     props: { games: data },
   };
