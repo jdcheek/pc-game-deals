@@ -8,10 +8,29 @@ function GameCard({ games }) {
   const [toggle, setToggle] = useState({
     isToggled: false,
   });
+
+  const dropDownOnClickHandler = (gameID) => {
+    if (toggle.id === gameID) {
+      setToggle({
+        ...toggle,
+        id: "",
+      });
+    } else if (toggle.id != gameID) {
+      setToggle({
+        ...toggle,
+        isToggled: !toggle.isToggled,
+        id: gameID,
+      });
+    }
+  };
+
   return (
     <div className={style.container}>
       {games.map((game) => (
-        <div className={style.card}>
+        <div
+          key={game.gameID}
+          className={style.card}
+          onClick={(e) => dropDownOnClickHandler(game.gameID)}>
           <div className={style.info}>
             <h1>steam rating</h1>
             <span>{game.steamRatingPercent}%</span>
@@ -30,7 +49,14 @@ function GameCard({ games }) {
             </span>
           </div>
           <div className={style.arrow}>
-            <MoreIcon />
+            {toggle.id === game.gameID ? <LessIcon /> : <MoreIcon />}
+          </div>
+          {toggle.id === game.gameID ? <br></br> : null}
+          <div
+            className={toggle.id === game.gameID ? null : style.hideDropdown}>
+            <div className={style.dropdown}>
+              <span>heres some stuff</span>
+            </div>
           </div>
         </div>
       ))}

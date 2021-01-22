@@ -8,12 +8,15 @@
 .card {
   display: flex;
   width: 100%;
-  height: 70px;
+  flex-wrap: wrap;
+  height: auto;
   background-color: var(--primary-white);
   color: black;
   border-radius: var(--small-radius);
   margin: 0.6rem;
   align-items: center;
+  cursor: pointer;
+  transition: all 3s ease-in-out;
 }
 
 .thumb {
@@ -30,7 +33,7 @@
 .info {
   text-transform: uppercase;
   text-align: center;
-  padding: 5px;
+  padding: 0 5px;
 }
 
 .info h1 {
@@ -66,8 +69,20 @@
 
 .arrow {
   margin: 0 0.5rem;
+  justify-content: flex-end;
 }
 
 .link {
   text-transform: uppercase;
+}
+
+.hideDropdown {
+  display: none;
+}
+
+.dropdown {
+  display: flex;
+  flex: 1 1 100%;
+  height: 50px;
+  color: black;
 }
