@@ -60,14 +60,18 @@ function GameCard({ games }) {
                   </span>
                 </div>
                 <div className={style.actions}>
-                  <div className={style.iconAction}>
+                  <a
+                    href={`https://www.cheapshark.com/redirect?dealID=${game.dealID}`}
+                    rel='noreferrer noopener'
+                    target='_blank'
+                    className={style.iconAction}>
                     <SteamIcon />
                     <span>View steam page</span>
-                  </div>
-                  <div className={style.iconAction}>
+                  </a>
+                  <a href='#' className={style.iconAction}>
                     <EmailIcon />
                     <span>Set up price notification</span>
-                  </div>
+                  </a>
                 </div>
               </div>
             ) : null}
