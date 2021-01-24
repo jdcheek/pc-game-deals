@@ -26,6 +26,10 @@
   font-size: 1.3rem;
   justify-self: center;
 }
+
+.nav a {
+  text-transform: uppercase;
+}
 .burger {
   display: none;
 }

@@ -10,8 +10,7 @@
   flex: 1 1 100%;
   width: 100%;
   height: auto;
-  background-color: var(--primary-white);
-  color: black;
+  background-color: var(--terciary-gray);
   border-radius: var(--small-radius);
   margin: 0.6rem;
 }
@@ -38,7 +37,6 @@
 }
 
 .steamRating h1 {
-  color: black;
   font-size: 1.2rem;
 }
 
@@ -83,15 +81,11 @@
 }
 
 .arrow svg:hover {
-  fill: var(--primary-blue);
+  fill: var(--secondary-blue);
 }
 
 .arrow svg {
   cursor: pointer;
-}
-
-.link {
-  text-transform: uppercase;
 }
 
 .hideDropdown {
@@ -102,7 +96,6 @@
   display: flex;
   flex: 1 1 100%;
   height: 100px;
-  color: black;
   padding: 5px;
   justify-content: space-between;
 }
@@ -115,17 +108,22 @@
   font-size: 1.2rem;
 }
 
+.actions svg {
+  fill: black;
+}
+
 .iconAction {
   display: flex;
   padding-top: 1px;
 }
 
 .iconAction span {
-  margin: 0 10px;
+  margin: 0 0 0 10px;
   align-self: center;
+  height: 24px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .title,
   .price,
   .arrow,
@@ -140,6 +138,7 @@
 
   .card {
     min-height: 210px;
+    max-width: 600px;
     width: auto;
   }
 

@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
 
 :root {
-  --primary-gray: #1f1f1f;
+  --primary-gray: #1d1f1f;
   --secondary-gray: #303030;
-  --terciary-gray: #3b3b3b;
+  --terciary-gray: #3f4346;
   --primary-blue: #098ee6;
-  --secondary-blue: #3ea3e6;
-  --primary-white: #adadad;
-  --alert-red: #9b1e1e;
-  --positive-green: #326520;
+  --secondary-blue: #63b1e6;
+  --primary-white: #b4b2b0;
+  --alert-red: #af5858;
+  --positive-green: #84ab76;
   --small-radius: 0.1rem;
 }
 
@@ -24,6 +24,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: var(--primary-gray);
+  color: var(--primary-white);
 }
 
 code {
@@ -54,7 +55,6 @@ ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
-  color: var(--primary-white);
 }
 
 li {
@@ -81,8 +81,11 @@ img {
 a {
   text-decoration: none;
   padding: 0.5rem;
-  text-transform: uppercase;
   color: var(--primary-white);
+}
+
+a:hover {
+  color: var(--secondary-blue);
 }
 
 input {
