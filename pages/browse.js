@@ -6,9 +6,9 @@ export default function Search() {
     <div>
       <Head>
         <title>PC GAME DEALS - Browse</title>
-        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Navbar />
+      <div className='nav-buffer'></div>
       <div className='page-container'>
         <h1>browse page</h1>
       </div>

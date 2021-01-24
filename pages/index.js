@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import style from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
 
@@ -12,7 +12,7 @@ export default function Home(props) {
       <Navbar />
       <div className='nav-buffer'></div>
       <div className='page-container'>
-        <h1>Top AAA Deals</h1>
+        <h1 className={style.title}>Top AAA Deals</h1>
         <div>
           <GameCard games={props.games} />
         </div>
