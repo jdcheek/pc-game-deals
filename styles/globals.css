@@ -41,8 +41,7 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-body,
+n body,
 h1,
 h2,
 h3,
@@ -98,8 +97,12 @@ input {
   margin: 0 auto;
 }
 
+.nav-buffer {
+  height: 66px;
+}
+
 @media screen and (max-width: 600px) {
   .page-container {
-    width: auto;
+    width: 100%;
   }
 }

@@ -1,22 +1,19 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
   align-items: center;
 }
 
 .card {
   display: flex;
+  flex: 1 1 100%;
   width: 100%;
-  flex-wrap: wrap;
   height: auto;
   background-color: var(--primary-white);
   color: black;
   border-radius: var(--small-radius);
   margin: 0.6rem;
-  align-items: center;
-  cursor: pointer;
-  transition: all 3s ease-in-out;
 }
 
 .thumb {
@@ -30,20 +27,32 @@
   font-size: 1.8rem;
 }
 
-.info {
+.steamRating {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
   text-align: center;
   padding: 0 5px;
 }
 
-.info h1 {
+.steamRating h1 {
   color: black;
   font-size: 1.2rem;
 }
 
-.info span {
+.steamRating span {
   color: var(--positive-green);
   font-size: 1.8rem;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
+  padding: 5px 0;
 }
 
 .price {
@@ -68,8 +77,17 @@
 }
 
 .arrow {
+  display: flex;
   margin: 0 0.5rem;
   justify-content: flex-end;
+}
+
+.arrow svg:hover {
+  fill: var(--primary-blue);
+}
+
+.arrow svg {
+  cursor: pointer;
 }
 
 .link {
@@ -83,6 +101,49 @@
 .dropdown {
   display: flex;
   flex: 1 1 100%;
-  height: 50px;
+  height: 100px;
   color: black;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 30px;
+  font-size: 1.2rem;
+}
+
+.iconAction {
+  display: flex;
+  padding-top: 1px;
+}
+
+.iconAction span {
+  margin: 0 10px;
+  align-self: center;
+}
+
+@media screen and (max-width: 600px) {
+  .title,
+  .price,
+  .arrow,
+  .thumb {
+    text-align: center;
+    width: 100%;
+  }
+
+  .actions {
+    margin: auto;
+  }
+
+  .card {
+    min-height: 210px;
+    width: auto;
+  }
+
+  .arrow {
+    margin-bottom: 5px;
+  }
 }
