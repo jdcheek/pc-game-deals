@@ -23,6 +23,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  letter-spacing: 0.05rem;
   background-color: var(--primary-gray);
   color: var(--primary-white);
 }
@@ -96,7 +97,7 @@ input {
 
 .page-container {
   width: 1200px;
-  min-width: 400px;
+  min-width: 380px;
   margin: 0 auto;
 }
 
@@ -104,8 +105,27 @@ input {
   height: 66px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
   .page-container {
     width: 100%;
   }
+}
+
+/* Game card styles */
+
+.gamecard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamecard {
+  display: flex;
+  flex: 1 1 100%;
+  width: 100%;
+  height: auto;
+  background-color: var(--terciary-gray);
+  border-radius: var(--small-radius);
+  margin: 0.6rem;
 }
