@@ -1,13 +1,17 @@
-import { React, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import style from "../styles/GameCard.module.css";
 import EmailIcon from "./svg/EmailIcon";
 import SteamIcon from "./svg/SteamIcon";
 import MoreIcon from "./svg/MoreIcon";
 import LessIcon from "./svg/LessIcon";
 
-function GameCard({ games }) {
+function GameCard({ games, curPage }) {
+  const router = useRouter();
+  const [gameList, setGameList] = useState([]);
   const [toggle, setToggle] = useState({
     isToggled: false,
+    id: "",
   });
 
   const dropDownOnClickHandler = (gameID) => {
@@ -25,10 +29,51 @@ function GameCard({ games }) {
     }
   };
 
+  useEffect(() => {
+    if (games) {
+      if (games.error) {
+        console.log("error");
+      } else {
+        setGameList(gameList.concat(games));
+      }
+    }
+  }, [games]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
+  // TODO  need to set scroll height to last item, currently defaults to top of page
+
+  const handleScroll = () => {
+    const lastItem = document.querySelector(
+      ".gamecard-container > .gamecard:last-child"
+    );
+    if (lastItem) {
+      const lastItemLoadedOffset = lastItem.offsetTop + lastItem.clientHeight;
+      const pageOffset = window.pageYOffset + window.innerHeight;
+
+      if (pageOffset > lastItemLoadedOffset) {
+        const query = router.query;
+        query.page = parseInt(curPage) + 1;
+        router.push(
+          {
+            pathname: "/",
+            query: { page: query.page },
+          },
+          "/"
+        );
+      }
+    }
+  };
+
   return (
-    <div className={style.container}>
-      {games.map((game) => (
-        <div key={game.gameID} className={style.card}>
+    <div className='gamecard-container'>
+      {gameList.map((game) => (
+        <div key={game.gameID} className='gamecard'>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
             <span>{game.steamRatingPercent}%</span>

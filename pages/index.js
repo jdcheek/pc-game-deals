@@ -3,7 +3,7 @@ import style from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
 
-export default function Home(props) {
+export default function Home({ games, curPage }) {
   return (
     <div>
       <Head>
@@ -12,23 +12,28 @@ export default function Home(props) {
       <Navbar />
       <div className='nav-buffer'></div>
       <div className='page-container'>
-        <h1 className={style.title}>Top AAA Deals</h1>
-        <div>
-          <GameCard games={props.games} />
-        </div>
+        <h1 className={style.title}>TOP AAA DEALS</h1>
+        <GameCard games={games} curPage={curPage} />
       </div>
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    `https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15&AAA=1`
-  );
-  const data = await res.json();
-  console.log(data);
+export const getServerSideProps = async ({ query }) => {
+  let page = query.page || 0;
+  let games = null;
+  const curPage = page;
 
-  return {
-    props: { games: data },
-  };
-}
+  try {
+    const res = await fetch(
+      `${process.env.FETCH_URL}&upperPrice=15&AAA=1&pageNumber=${page}&pageSize=20`
+    );
+    if (res.status !== 200) {
+      return console.log("Failed to fetch" + res.status);
+    }
+    games = await res.json();
+  } catch (err) {
+    games = { error: { message: err.message } };
+  }
+  return { props: { games, curPage } };
+};
