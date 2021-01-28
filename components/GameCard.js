@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import style from "../styles/GameCard.module.css";
 import EmailIcon from "./svg/EmailIcon";
 import SteamIcon from "./svg/SteamIcon";
 import MoreIcon from "./svg/MoreIcon";
 import LessIcon from "./svg/LessIcon";
 
-function GameCard({ games, curPage }) {
-  const router = useRouter();
-  const [gameList, setGameList] = useState([]);
+function GameCard({ games, fetchNextPage }) {
   const [toggle, setToggle] = useState({
     isToggled: false,
     id: "",
@@ -28,17 +25,6 @@ function GameCard({ games, curPage }) {
       });
     }
   };
-
-  useEffect(() => {
-    if (games) {
-      if (games.error) {
-        console.log("error");
-      } else {
-        setGameList(gameList.concat(games));
-      }
-    }
-  }, [games]);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -46,33 +32,20 @@ function GameCard({ games, curPage }) {
     };
   });
 
-  // TODO  need to set scroll height to last item, currently defaults to top of page
-
-  const handleScroll = () => {
-    const lastItem = document.querySelector(
-      ".gamecard-container > .gamecard:last-child"
-    );
+  const handleScroll = async () => {
+    const lastItem = document.querySelector(".gamecard:last-child");
     if (lastItem) {
       const lastItemLoadedOffset = lastItem.offsetTop + lastItem.clientHeight;
       const pageOffset = window.pageYOffset + window.innerHeight;
-
       if (pageOffset > lastItemLoadedOffset) {
-        const query = router.query;
-        query.page = parseInt(curPage) + 1;
-        router.push(
-          {
-            pathname: "/",
-            query: { page: query.page },
-          },
-          "/"
-        );
+        fetchNextPage();
       }
     }
   };
 
   return (
     <div className='gamecard-container'>
-      {gameList.map((game) => (
+      {games.map((game) => (
         <div key={game.gameID} className='gamecard'>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
@@ -82,7 +55,11 @@ function GameCard({ games, curPage }) {
             <div className={style.thumb}>
               <img src={game.thumb} alt={`${game.title} thumbnail`} />
             </div>
-            <span className={style.title}>{game.title}</span>
+            <span className={style.title}>
+              {game.title.length > 60
+                ? game.title.slice(0, -20) + "..."
+                : game.title}
+            </span>
             <div className={style.price}>
               <span className={style.normal}>{game.normalPrice}</span>
               <span className={style.sale}>${game.salePrice}</span>
