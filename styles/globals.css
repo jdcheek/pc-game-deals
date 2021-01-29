@@ -12,6 +12,8 @@
   --small-radius: 0.1rem;
 }
 
+/* Resets */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Teko", "Segoe UI", "Roboto",
@@ -69,6 +71,8 @@ select {
   font: inherit;
 }
 
+/* Base Styles */
+
 ol,
 ul {
   list-style: none;
@@ -95,16 +99,29 @@ input {
   border-radius: var(--small-radius);
 }
 
+.nav-buffer {
+  height: 66px;
+}
+
+button {
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: var(--primary-white);
+  font-size: 1.2rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+button:hover {
+  color: var(--secondary-blue);
+}
+
 .page-container {
   width: 1200px;
   min-width: 380px;
   margin: 0 auto;
 }
-
-.nav-buffer {
-  height: 66px;
-}
-
 /* Game card styles */
 
 .gamecard-container {
@@ -144,6 +161,33 @@ input {
 
 .loader p {
   font-size: 2rem;
+}
+
+/* Utilities */
+
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.486);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  min-width: 350px;
+  max-width: 500px;
+  height: 300px;
+  color: var(--primary-white);
+  border-radius: var(--small-radius);
+  background-color: var(--secondary-gray);
 }
 
 /* Media Queries */
