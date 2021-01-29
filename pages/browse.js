@@ -17,12 +17,12 @@ export default function Browse({ games }) {
     steamRating: 0,
     metacritic: 0,
   });
-  console.log(sort.steamRating);
+
   const fetchNextPage = async () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_FETCH_URL}&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.steamRating}&metacritic=${sort.metacritic}`
+        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.steamRating}&metacritic=${sort.metacritic}`
       );
       if (res.status !== 200) {
         return console.log("Failed to fetch" + res.status);
@@ -39,17 +39,8 @@ export default function Browse({ games }) {
   };
 
   useEffect(() => {
-    setGameResults(games);
-  }, []);
-
-  useEffect(() => {
-    setGameResults([]);
     fetchNextPage();
   }, [sort]);
-
-  useEffect(() => {
-    setPage(page + 1);
-  }, []);
 
   return (
     <div>
@@ -62,6 +53,7 @@ export default function Browse({ games }) {
           setSort={setSort}
           sort={sort}
           setTogglePopup={setTogglePopup}
+          setGameResults={setGameResults}
         />
       )}
       <div className='nav-buffer'></div>
@@ -95,7 +87,7 @@ export const getServerSideProps = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_FETCH_URL}&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.reviews}&metacritic=${sort.metacritic}`
+      `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.reviews}&metacritic=${sort.metacritic}`
     );
     if (res.status !== 200) {
       return console.log("Failed to fetch" + res.status);

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import style from "../styles/SortPopup.module.css";
 
-export default function SortPopup({ setSort, setTogglePopup, sort }) {
+export default function SortPopup({
+  setSort,
+  setTogglePopup,
+  sort,
+  setGameResults,
+}) {
   const [sortState, setSortState] = useState(sort);
 
   const handleChange = (e) => {
@@ -9,6 +14,7 @@ export default function SortPopup({ setSort, setTogglePopup, sort }) {
   };
 
   const handleSubmit = () => {
+    setGameResults([]);
     setSort(sortState);
     setTogglePopup(false);
   };
