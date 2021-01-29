@@ -14,7 +14,7 @@ export default function Home({ games }) {
     end ? setLoading(false) : setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_FETCH_URL}&upperPrice=15&AAA=1&pageNumber=${page}&pageSize=10`
+        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=${page}&pageSize=10`
       );
       if (res.status !== 200) {
         return console.log("Failed to fetch" + res.status);
@@ -65,7 +65,7 @@ export const getServerSideProps = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.FETCH_URL}&upperPrice=15&AAA=1&pageNumber=0&pageSize=10`
+      `${process.env.FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=0&pageSize=10`
     );
     if (res.status !== 200) {
       return console.log("Failed to fetch" + res.status);
