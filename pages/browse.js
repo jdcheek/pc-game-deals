@@ -2,18 +2,27 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
+import SortPopup from "../components/SortPopup";
 import style from "../styles/Browse.module.css";
 
 export default function Browse({ games }) {
   const [loading, setLoading] = useState(false);
+  const [togglePopup, setTogglePopup] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [page, setPage] = useState(0);
-
+  const [sort, setSort] = useState({
+    direction: 0,
+    sortBy: "savings",
+    upperPrice: 15,
+    steamRating: 0,
+    metacritic: 0,
+  });
+  console.log(sort.steamRating);
   const fetchNextPage = async () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_FETCH_URL}&upperPrice=15&pageNumber=${page}&pageSize=10`
+        `${process.env.NEXT_PUBLIC_FETCH_URL}&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.steamRating}&metacritic=${sort.metacritic}`
       );
       if (res.status !== 200) {
         return console.log("Failed to fetch" + res.status);
@@ -34,6 +43,11 @@ export default function Browse({ games }) {
   }, []);
 
   useEffect(() => {
+    setGameResults([]);
+    fetchNextPage();
+  }, [sort]);
+
+  useEffect(() => {
     setPage(page + 1);
   }, []);
 
@@ -43,9 +57,19 @@ export default function Browse({ games }) {
         <title>PC GAME DEALS - Browse</title>
       </Head>
       <Navbar />
+      {togglePopup && (
+        <SortPopup
+          setSort={setSort}
+          sort={sort}
+          setTogglePopup={setTogglePopup}
+        />
+      )}
       <div className='nav-buffer'></div>
       <div className='page-container'>
-        <h1 className={style.title}>BROWSE TITLES</h1>
+        <div className={style.header}>
+          <h1 className={style.title}>BROWSE TITLES</h1>
+          <button onClick={() => setTogglePopup(true)}>FILTER/SORT</button>
+        </div>
         <GameCard games={gameResults} fetchNextPage={fetchNextPage} />
         {loading && (
           <div className={"loader"}>
@@ -59,10 +83,19 @@ export default function Browse({ games }) {
 
 export const getServerSideProps = async () => {
   let games = null;
+  let page = 0;
+
+  const sort = {
+    direction: 0,
+    sortBy: "savings",
+    upperPrice: 15,
+    reviews: 0,
+    metacritic: 0,
+  };
 
   try {
     const res = await fetch(
-      `${process.env.FETCH_URL}&upperPrice=15&pageNumber=0&pageSize=10`
+      `${process.env.NEXT_PUBLIC_FETCH_URL}&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.reviews}&metacritic=${sort.metacritic}`
     );
     if (res.status !== 200) {
       return console.log("Failed to fetch" + res.status);

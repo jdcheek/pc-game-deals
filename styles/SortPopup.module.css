@@ -1,0 +1,49 @@
+.closeBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeBtn button {
+  margin-right: 10px;
+}
+
+.content {
+  display: flex;
+  margin: 10px;
+}
+
+.filter {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sort {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.heading {
+  font-size: 1.5rem;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  color: var(--secondary-blue);
+}
+
+.option input {
+  width: 250px;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnContainer button {
+  margin: 0 40px;
+}
