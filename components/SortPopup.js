@@ -6,18 +6,35 @@ export default function SortPopup({
   setTogglePopup,
   sort,
   setGameResults,
+  setPage,
 }) {
   const [sortState, setSortState] = useState(sort);
+  const [defaultSort, setDefaultSort] = useState(sort);
 
   const handleChange = (e) => {
     setSortState({ ...sortState, [e.target.name]: e.target.value });
+    console.log(e);
+  };
+
+  const handleClick = (e) => {
+    setSortState({
+      ...sortState,
+      [e.target.attributes.name.value]: e.target.attributes.value.value,
+    });
+  };
+
+  const reset = () => {
+    setPage(0);
+    setGameResults([]);
   };
 
   const handleSubmit = () => {
-    setGameResults([]);
+    reset();
     setSort(sortState);
     setTogglePopup(false);
   };
+
+  console.log(sortState);
   return (
     <div className='overlay'>
       <div className='popup'>
@@ -56,7 +73,7 @@ export default function SortPopup({
                 type='range'
                 min='0'
                 max='50'
-                step='.5'
+                step='1'
                 value={sortState.upperPrice}
                 onChange={(e) => handleChange(e)}></input>
             </div>
@@ -64,16 +81,44 @@ export default function SortPopup({
           <div className={style.sort}>
             <span className={style.heading}>SORT</span>
             <div className={style.option}>
-              <span>PRICE</span>
+              <span onClick={(e) => handleClick(e)} value='price' name='sortBy'>
+                PRICE
+              </span>
             </div>
             <div className={style.option}>
-              <span>SAVINGS</span>
+              <span
+                onClick={(e) => handleClick(e)}
+                value='savings'
+                name='sortBy'>
+                SAVINGS
+              </span>
             </div>
             <div className={style.option}>
-              <span>REVIEWS</span>
+              <span
+                onClick={(e) => handleClick(e)}
+                value='reviews'
+                name='sortBy'>
+                REVIEWS
+              </span>
             </div>
             <div className={style.option}>
-              <span>DESCEND / ASCEND</span>
+              <span>
+                {sortState.direction === "0" ? (
+                  <span
+                    value='1'
+                    name='direction'
+                    onClick={(e) => handleClick(e)}>
+                    ASCEND
+                  </span>
+                ) : (
+                  <span
+                    value='0'
+                    name='direction'
+                    onClick={(e) => handleClick(e)}>
+                    DESCEND
+                  </span>
+                )}
+              </span>
             </div>
           </div>
         </div>
@@ -81,16 +126,18 @@ export default function SortPopup({
           <button
             onClick={() =>
               setSortState({
-                direction: 0,
+                direction: "0",
                 sortBy: "savings",
-                upperPrice: 15,
-                steamRating: 0,
-                metacritic: 0,
+                upperPrice: "15",
+                steamRating: "0",
+                metacritic: "0",
               })
             }>
             RESET
           </button>
-          <button onClick={handleSubmit}>SUBMIT</button>
+          <button disabled={defaultSort === sortState} onClick={handleSubmit}>
+            SUBMIT
+          </button>
         </div>
       </div>
     </div>

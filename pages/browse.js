@@ -11,11 +11,11 @@ export default function Browse({ games }) {
   const [gameResults, setGameResults] = useState([]);
   const [page, setPage] = useState(0);
   const [sort, setSort] = useState({
-    direction: 0,
+    direction: "0",
     sortBy: "savings",
-    upperPrice: 15,
-    steamRating: 0,
-    metacritic: 0,
+    upperPrice: "15",
+    steamRating: "0",
+    metacritic: "0",
   });
 
   const fetchNextPage = async () => {
@@ -54,6 +54,7 @@ export default function Browse({ games }) {
           sort={sort}
           setTogglePopup={setTogglePopup}
           setGameResults={setGameResults}
+          setPage={setPage}
         />
       )}
       <div className='nav-buffer'></div>
