@@ -7,7 +7,7 @@ import style from "../styles/Browse.module.css";
 
 export default function Browse({ games }) {
   const [loading, setLoading] = useState(false);
-  const [togglePopup, setTogglePopup] = useState(false);
+  const [toggleSortPopup, setToggleSortPopup] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [page, setPage] = useState(0);
   const [sort, setSort] = useState({
@@ -17,6 +17,7 @@ export default function Browse({ games }) {
     steamRating: "0",
     metacritic: "0",
   });
+  const [pageTop, setPageTop] = useState(true);
 
   const fetchNextPage = async () => {
     setLoading(true);
@@ -38,6 +39,23 @@ export default function Browse({ games }) {
     setLoading(false);
   };
 
+  const handleScroll = () => {
+    if (process.browser) {
+      if (window.pageYOffset > 30) {
+        setPageTop(false);
+      } else {
+        setPageTop(true);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   useEffect(() => {
     fetchNextPage();
   }, [sort]);
@@ -48,11 +66,11 @@ export default function Browse({ games }) {
         <title>PC GAME DEALS - Browse</title>
       </Head>
       <Navbar />
-      {togglePopup && (
+      {toggleSortPopup && (
         <SortPopup
           setSort={setSort}
           sort={sort}
-          setTogglePopup={setTogglePopup}
+          setToggleSortPopup={setToggleSortPopup}
           setGameResults={setGameResults}
           setPage={setPage}
         />
@@ -61,7 +79,7 @@ export default function Browse({ games }) {
       <div className='page-container'>
         <div className={style.header}>
           <h1 className={style.title}>BROWSE TITLES</h1>
-          <button onClick={() => setTogglePopup(true)}>FILTER/SORT</button>
+          <button onClick={() => setToggleSortPopup(true)}>FILTER/SORT</button>
         </div>
         <GameCard games={gameResults} fetchNextPage={fetchNextPage} />
         {loading ? (
@@ -72,6 +90,19 @@ export default function Browse({ games }) {
           <div className='loader'>
             <p>No results found...</p>
           </div>
+        ) : null}
+        {!pageTop ? (
+          <button
+            className={style.toTopBtn}
+            onClick={() =>
+              window.scroll({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+              })
+            }>
+            Top
+          </button>
         ) : null}
       </div>
     </div>
