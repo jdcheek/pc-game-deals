@@ -63,11 +63,15 @@ export default function Browse({ games }) {
           <button onClick={() => setTogglePopup(true)}>FILTER/SORT</button>
         </div>
         <GameCard games={gameResults} fetchNextPage={fetchNextPage} />
-        {loading && (
-          <div className={"loader"}>
+        {loading ? (
+          <div className='loader'>
             <p>Loading...</p>
           </div>
-        )}
+        ) : gameResults.length === 0 ? (
+          <div className='loader'>
+            <p>No results found...</p>
+          </div>
+        ) : null}
       </div>
     </div>
   );
