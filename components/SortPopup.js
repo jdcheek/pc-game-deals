@@ -3,7 +3,7 @@ import style from "../styles/SortPopup.module.css";
 
 export default function SortPopup({
   setSort,
-  setTogglePopup,
+  setToggleSortPopup,
   sort,
   setGameResults,
   setPage,
@@ -13,8 +13,8 @@ export default function SortPopup({
 
   const handleChange = (e) => {
     setSortState({ ...sortState, [e.target.name]: e.target.value });
-    console.log(e);
   };
+  console.log(sortState);
 
   const handleClick = (e) => {
     setSortState({
@@ -31,15 +31,14 @@ export default function SortPopup({
   const handleSubmit = () => {
     reset();
     setSort(sortState);
-    setTogglePopup(false);
+    setToggleSortPopup(false);
   };
 
-  console.log(sortState);
   return (
     <div className='overlay'>
       <div className='popup'>
         <div className={style.closeBtn}>
-          <button onClick={() => setTogglePopup(false)}>CLOSE</button>
+          <button onClick={() => setToggleSortPopup(false)}>CLOSE</button>
         </div>
         <div className={style.content}>
           <div className={style.filter}>
@@ -81,13 +80,22 @@ export default function SortPopup({
           <div className={style.sort}>
             <span className={style.heading}>SORT</span>
             <div className={style.option}>
-              <span onClick={(e) => handleClick(e)} value='price' name='sortBy'>
+              <span
+                onClick={(e) => handleClick(e)}
+                className={
+                  sortState.sortBy === "price" ? null : style.sortSelection
+                }
+                value='price'
+                name='sortBy'>
                 PRICE
               </span>
             </div>
             <div className={style.option}>
               <span
                 onClick={(e) => handleClick(e)}
+                className={
+                  sortState.sortBy === "savings" ? null : style.sortSelection
+                }
                 value='savings'
                 name='sortBy'>
                 SAVINGS
@@ -96,6 +104,9 @@ export default function SortPopup({
             <div className={style.option}>
               <span
                 onClick={(e) => handleClick(e)}
+                className={
+                  sortState.sortBy === "reviews" ? null : style.sortSelection
+                }
                 value='reviews'
                 name='sortBy'>
                 REVIEWS
