@@ -8,10 +8,10 @@ export default function Home({ games }) {
   const [loading, setLoading] = useState(false);
   const [gameResults, setGameResults] = useState([]);
   const [page, setPage] = useState(0);
-  const [end, setEnd] = useState(false);
+  const [pageEnd, setPageEnd] = useState(false);
 
   const fetchNextPage = async () => {
-    end ? setLoading(false) : setLoading(true);
+    pageEnd ? setLoading(false) : setLoading(true);
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=${page}&pageSize=10`
@@ -24,7 +24,7 @@ export default function Home({ games }) {
         setGameResults(gameResults.concat(games));
         setPage(page + 1);
       } else {
-        setEnd(true);
+        setPageEnd(true);
       }
     } catch (err) {
       games = { error: { message: err.message } };
