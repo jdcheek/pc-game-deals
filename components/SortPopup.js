@@ -28,18 +28,18 @@ export default function SortPopup({
           <div className={style.filter}>
             <span className={style.heading}>FILTER</span>
             <div className={style.option}>
-              <span>STEAM RATING: {sortState.steamRating}%</span>
+              <span>MIN STEAM RATING: {sortState.steamRating}%</span>
               <input
                 name='steamRating'
                 type='range'
                 min='0'
-                max='100'
-                step='1'
+                max='90'
+                step='5'
                 value={sortState.steamRating}
                 onChange={(e) => handleChange(e)}></input>
             </div>
             <div className={style.option}>
-              <span>METACRITIC RATING: {sortState.metacritic}</span>
+              <span>MIN METACRITIC RATING: {sortState.metacritic}</span>
               <input
                 name='metacritic'
                 type='range'
