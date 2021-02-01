@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import style from "../styles/GameCard.module.css";
+import EmailPopup from "../components/EmailPopup";
 import EmailIcon from "./svg/EmailIcon";
 import SteamIcon from "./svg/SteamIcon";
 import MoreIcon from "./svg/MoreIcon";
 import LessIcon from "./svg/LessIcon";
 
 function GameCard({ games, fetchNextPage }) {
+  const [toggleEmailPopup, setToggleEmailPopup] = useState(false);
   const [toggle, setToggle] = useState({
     isToggled: false,
     id: "",
@@ -25,6 +27,7 @@ function GameCard({ games, fetchNextPage }) {
       });
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -90,7 +93,9 @@ function GameCard({ games, fetchNextPage }) {
                     <SteamIcon />
                     <span>View steam page</span>
                   </a>
-                  <a href='#' className={style.iconAction}>
+                  <a
+                    onClick={() => setToggleEmailPopup(true)}
+                    className={style.iconAction}>
                     <EmailIcon />
                     <span>Set up price notification</span>
                   </a>
@@ -100,6 +105,9 @@ function GameCard({ games, fetchNextPage }) {
           </div>
         </div>
       ))}
+      {toggleEmailPopup ? (
+        <EmailPopup setToggleEmailPopup={setToggleEmailPopup} />
+      ) : null}
     </div>
   );
 }
