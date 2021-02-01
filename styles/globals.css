@@ -103,6 +103,8 @@ input {
   height: 66px;
 }
 
+/* Buttons  */
+
 button {
   height: 40px;
   background: transparent;
@@ -115,6 +117,24 @@ button {
 
 button:hover {
   color: var(--secondary-blue);
+}
+
+.to-top-btn {
+  position: fixed;
+  top: 50;
+  bottom: 0;
+  left: 50;
+  right: 0;
+  margin: auto;
+  width: 48px;
+  height: 36px;
+  color: var(--primary-white);
+  border-radius: var(--small-radius);
+  background-color: var(--secondary-gray);
+}
+
+.hide {
+  display: none;
 }
 
 .page-container {
@@ -194,6 +214,12 @@ button:hover {
 
 @media screen and (max-width: 1200px) {
   .page-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .toTopBtn {
     width: 100%;
   }
 }
