@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
 import SortPopup from "../components/SortPopup";
+import TopButton from "../components/TopButton";
 import style from "../styles/Browse.module.css";
 
 export default function Browse({ games }) {
@@ -17,7 +18,6 @@ export default function Browse({ games }) {
     steamRating: "0",
     metacritic: "0",
   });
-  const [pageTop, setPageTop] = useState(true);
 
   const fetchNextPage = async () => {
     setLoading(true);
@@ -38,23 +38,6 @@ export default function Browse({ games }) {
     }
     setLoading(false);
   };
-
-  const handleScroll = () => {
-    if (process.browser) {
-      if (window.pageYOffset > 30) {
-        setPageTop(false);
-      } else {
-        setPageTop(true);
-      }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  });
 
   useEffect(() => {
     fetchNextPage();
@@ -91,19 +74,7 @@ export default function Browse({ games }) {
             <p>No results found...</p>
           </div>
         ) : null}
-        {!pageTop ? (
-          <button
-            className={style.toTopBtn}
-            onClick={() =>
-              window.scroll({
-                top: 0,
-                left: 0,
-                behavior: "smooth",
-              })
-            }>
-            Top
-          </button>
-        ) : null}
+        <TopButton />
       </div>
     </div>
   );

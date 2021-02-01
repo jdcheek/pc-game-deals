@@ -3,6 +3,7 @@ import Head from "next/head";
 import style from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
+import TopButton from "../components/TopButton";
 
 export default function Home({ games }) {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ export default function Home({ games }) {
     pageEnd ? setLoading(false) : setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=${page}&pageSize=10`
+        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=30&AAA=1&pageNumber=${page}&pageSize=10`
       );
       if (res.status !== 200) {
         return console.log("Failed to fetch" + res.status);
@@ -55,6 +56,7 @@ export default function Home({ games }) {
             <p>Loading...</p>
           </div>
         )}
+        <TopButton />
       </div>
     </div>
   );
