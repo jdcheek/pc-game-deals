@@ -87,6 +87,7 @@ a {
   text-decoration: none;
   padding: 0.5rem;
   color: var(--primary-white);
+  cursor: pointer;
 }
 
 a:hover {
