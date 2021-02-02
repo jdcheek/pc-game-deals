@@ -106,7 +106,10 @@ function GameCard({ games, fetchNextPage }) {
         </div>
       ))}
       {toggleEmailPopup ? (
-        <EmailPopup setToggleEmailPopup={setToggleEmailPopup} />
+        <EmailPopup
+          setToggleEmailPopup={setToggleEmailPopup}
+          gameID={toggle.id}
+        />
       ) : null}
     </div>
   );

@@ -25,6 +25,7 @@
 
 .inputContainer input {
   letter-spacing: 0.03rem;
+  font-size: 1.1rem;
 }
 
 .inputContainer div {
@@ -38,7 +39,22 @@
 }
 
 .priceInput input {
-  width: 100px;
+  width: 80px;
+  text-align: center;
+}
+
+.priceInput input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.priceInput input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.priceInput input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .closeBtn {
