@@ -14,7 +14,6 @@ export default function SortPopup({
   const handleChange = (e) => {
     setSortState({ ...sortState, [e.target.name]: e.target.value });
   };
-  console.log(sortState);
 
   const handleClick = (e) => {
     setSortState({
