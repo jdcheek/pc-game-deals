@@ -16,27 +16,35 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
       const res = await fetch(
         `https://www.cheapshark.com/api/1.0/alerts?action=set&email=${emailFormState.email}&gameID=${gameID}&price=${emailFormState.price}`
       );
-      res.status === 200 ? setToggleEmailPopup(false) : alert("Failed");
+      const data = await res.json();
+      data === true
+        ? setToggleEmailPopup(false)
+        : alert("Please enter a valid email and price.");
     } catch (error) {
       alert(error.message);
     }
   };
 
   const handleEditNotifications = async () => {
-    try {
-      const res = await fetch(
-        `https://www.cheapshark.com/api/1.0/alerts?action=manage&email=${emailFormState.email}`
-      );
-      if (res.status === 200) {
-        alert(
-          `An email has been sent to ${emailFormState.email} to manage your notifications`
+    console.log(emailFormState);
+    if (emailFormState.email !== "") {
+      try {
+        const res = await fetch(
+          `https://www.cheapshark.com/api/1.0/alerts?action=manage&email=${emailFormState.email}`
         );
-        setToggleEmailPopup(false);
-      } else {
-        alert("No email found");
+        if (res.status === 200) {
+          alert(
+            `An email has been sent to ${emailFormState.email} to manage your notifications`
+          );
+          setToggleEmailPopup(false);
+        } else {
+          alert("Please enter a valid email");
+        }
+      } catch (error) {
+        alert(error.message);
       }
-    } catch (error) {
-      alert(error.message);
+    } else {
+      alert("Please enter a valid email");
     }
   };
 
@@ -51,6 +59,7 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
             <div className={style.emailInput}>
               <label htmlFor='email'>EMAIL ADDRESS</label>
               <input
+                required
                 type='email'
                 name='email'
                 value={emailFormState.email}
@@ -74,7 +83,9 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
             <button onClick={handleEditNotifications}>
               EDIT NOTIFICATIONS
             </button>
-            <button onClick={handleFormSubmit}>SAVE</button>
+            <button type='submit' onClick={handleFormSubmit}>
+              SAVE
+            </button>
           </div>
         </div>
       </div>
