@@ -12,6 +12,7 @@ export default function Browse({ games }) {
   const [gameResults, setGameResults] = useState([]);
   const [page, setPage] = useState(0);
   const [sort, setSort] = useState({
+    onSale: false,
     direction: "0",
     sortBy: "savings",
     upperPrice: "15",
@@ -60,8 +61,8 @@ export default function Browse({ games }) {
       )}
       <div className='nav-buffer'></div>
       <div className='page-container'>
-        <div className={style.header}>
-          <h1 className={style.title}>BROWSE TITLES</h1>
+        <div className={"header"}>
+          <h1 className={"title"}>BROWSE TITLES</h1>
           <button onClick={() => setToggleSortPopup(true)}>FILTER/SORT</button>
         </div>
         <GameCard games={gameResults} fetchNextPage={fetchNextPage} />
