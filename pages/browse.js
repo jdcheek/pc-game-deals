@@ -80,7 +80,7 @@ export default function Browse({ games }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   let games = null;
   let page = 0;
 

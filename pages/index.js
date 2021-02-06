@@ -62,7 +62,7 @@ export default function Home({ games }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   let games = null;
 
   try {
