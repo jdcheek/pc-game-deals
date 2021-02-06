@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
 import SortPopup from "../components/SortPopup";
 import TopButton from "../components/TopButton";
-import style from "../styles/Browse.module.css";
 
 export default function Browse({ games }) {
   const [loading, setLoading] = useState(false);
