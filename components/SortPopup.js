@@ -33,6 +33,7 @@ export default function SortPopup({
     setToggleSortPopup(false);
   };
 
+  console.log(sortState);
   return (
     <div className='overlay'>
       <div className='popup'>
@@ -74,6 +75,18 @@ export default function SortPopup({
                 step='1'
                 value={sortState.upperPrice}
                 onChange={(e) => handleChange(e)}></input>
+            </div>
+            <div className={style.option}>
+              <span>
+                <label htmlFor='onSale'>TITLES ON SALE:</label>
+                <input
+                  name='onSale'
+                  type='checkbox'
+                  checked={sortState.onSale}
+                  onChange={(e) =>
+                    setSortState({ ...sortState, onSale: !sortState.onSale })
+                  }></input>
+              </span>
             </div>
           </div>
           <div className={style.sort}>
@@ -136,6 +149,7 @@ export default function SortPopup({
           <button
             onClick={() =>
               setSortState({
+                onSale: false,
                 direction: "0",
                 sortBy: "savings",
                 upperPrice: "15",
