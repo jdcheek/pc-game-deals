@@ -17,7 +17,6 @@ export default function Navbar() {
           <Link href='/search'>
             <a>search</a>
           </Link>
-          <input className={style.input} type='text' />
         </div>
         <div className={style.burger}>
           <span></span>

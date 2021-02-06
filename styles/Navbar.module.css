@@ -21,6 +21,7 @@
 }
 
 .nav {
+  display: flex;
   align-self: center;
   padding-top: 1.1rem;
   font-size: 1.3rem;
@@ -36,11 +37,8 @@
   display: none;
 }
 
-.input {
-  width: 10rem;
-  height: 1.1rem;
-  padding-top: 0.3rem;
-  box-shadow: 0 4px 4px 0 rgba(53, 36, 36, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+.nav form {
+  align-self: center;
 }
 
 /* Media Queries */
@@ -52,9 +50,6 @@
   }
   .nav {
     padding-right: 1.2rem;
-  }
-  .input {
-    display: none;
   }
 }
 
