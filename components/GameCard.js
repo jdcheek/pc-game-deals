@@ -13,17 +13,16 @@ function GameCard({ games, fetchNextPage }) {
     id: "",
   });
 
-  const dropDownOnClickHandler = (gameID) => {
-    if (toggle.id === gameID) {
+  const dropDownOnClickHandler = (dealID) => {
+    if (toggle.id === dealID) {
       setToggle({
         isToggled: false,
         id: "",
       });
-    } else if (toggle.id != gameID) {
+    } else if (toggle.id !== dealID) {
       setToggle({
-        ...toggle,
         isToggled: !toggle.isToggled,
-        id: gameID,
+        id: dealID,
       });
     }
   };
@@ -49,7 +48,7 @@ function GameCard({ games, fetchNextPage }) {
   return (
     <div className='gamecard-container'>
       {games.map((game) => (
-        <div key={game.gameID} className='gamecard'>
+        <div key={game.dealID} className='gamecard'>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
             <span>{game.steamRatingPercent}%</span>
@@ -64,7 +63,9 @@ function GameCard({ games, fetchNextPage }) {
                 : game.title}
             </span>
             <div className={style.price}>
-              <span className={style.normal}>{game.normalPrice}</span>
+              {game.normalPrice !== game.salePrice && (
+                <span className={style.normal}>{game.normalPrice}</span>
+              )}
               <span className={style.sale}>${game.salePrice}</span>
               <span className={style.savings}>
                 {Math.floor(game.savings)}% OFF
@@ -72,10 +73,10 @@ function GameCard({ games, fetchNextPage }) {
             </div>
             <div
               className={style.arrow}
-              onClick={(e) => dropDownOnClickHandler(game.gameID)}>
-              {toggle.id === game.gameID ? <LessIcon /> : <MoreIcon />}
+              onClick={(e) => dropDownOnClickHandler(game.dealID)}>
+              {toggle.id === game.dealID ? <LessIcon /> : <MoreIcon />}
             </div>
-            {toggle.id === game.gameID ? (
+            {toggle.id === game.dealID ? (
               <div className={style.dropdown}>
                 <div className={style.actions}>
                   <span>Metacritic Score: {game.metacriticScore}</span>
