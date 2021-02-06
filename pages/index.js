@@ -67,7 +67,7 @@ export const getStaticProps = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=0&pageSize=10`
+      `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=0&pageSize=20`
     );
     if (res.status !== 200) {
       return console.log("Failed to fetch" + res.status);

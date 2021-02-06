@@ -67,7 +67,7 @@ export default function Search() {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=${
           sort.onSale ? "1" : "0"
-        }&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=10&sortBy=${
+        }&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=20&sortBy=${
           sort.sortBy
         }&desc=${sort.direction}&steamRating=${sort.steamRating}&metacritic=${
           sort.metacritic
