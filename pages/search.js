@@ -108,7 +108,6 @@ export default function Search() {
         <title>PC GAME DEALS - Search</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Navbar />
       {toggleSortPopup && (
         <SortPopup
           setSort={setSort}
@@ -118,7 +117,6 @@ export default function Search() {
           setPage={setPage}
         />
       )}
-      <div className='nav-buffer'></div>
       <div className='page-container'>
         <div className={"header"}>
           <h1 className={"title"}>SEARCH TITLES</h1>

@@ -1,21 +1,39 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import style from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
 import GameCard from "../components/GameCard";
 import TopButton from "../components/TopButton";
 
 export default function Home({ games }) {
   const [loading, setLoading] = useState(false);
-  const [gameResults, setGameResults] = useState([]);
-  const [page, setPage] = useState(0);
+  const [toggleSortPopup, setToggleSortPopup] = useState(false);
+  const [resultsMessage, setResultsMessage] = useState(false);
+  const [gameResults, setGameResults] = useState(games);
   const [pageEnd, setPageEnd] = useState(false);
+  const [page, setPage] = useState(0);
+  const [sort, setSort] = useState({
+    onSale: true,
+    direction: "0",
+    sortBy: "savings",
+    upperPrice: "15",
+    steamRating: "0",
+    metacritic: "0",
+  });
 
   const fetchNextPage = async () => {
-    pageEnd ? setLoading(false) : setLoading(true);
+    if (pageEnd) {
+      return;
+    }
+    setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=30&AAA=1&pageNumber=${page}&pageSize=10`
+        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=${
+          sort.onSale ? "1" : "0"
+        }&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=20&sortBy=${
+          sort.sortBy
+        }&desc=${sort.direction}&steamRating=${sort.steamRating}&metacritic=${
+          sort.metacritic
+        }&AAA=1`
       );
       if (res.status !== 200) {
         return console.log("Failed to fetch" + res.status);
@@ -25,6 +43,7 @@ export default function Home({ games }) {
         setGameResults(gameResults.concat(games));
         setPage(page + 1);
       } else {
+        setResultsMessage(true);
         setPageEnd(true);
       }
     } catch (err) {
@@ -33,27 +52,65 @@ export default function Home({ games }) {
     setLoading(false);
   };
 
-  useEffect(() => {
-    setGameResults(games);
-  }, []);
+  const fetchFirstPage = async () => {
+    setLoading(true);
+    setResultsMessage(false);
+    setGameResults([]);
+    setPageEnd(false);
+    setPage(0);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=${
+          sort.onSale ? "1" : "0"
+        }&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=20&sortBy=${
+          sort.sortBy
+        }&desc=${sort.direction}&steamRating=${sort.steamRating}&metacritic=${
+          sort.metacritic
+        }&AAA=1`
+      );
+      if (res.status !== 200) {
+        return console.log("Failed to fetch" + res.status);
+      }
+      const games = await res.json();
+      if (games.length > 0) {
+        setGameResults(games);
+        setPage(1);
+      } else {
+        setResultsMessage(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setPage(page + 1);
-  }, []);
+    fetchFirstPage();
+  }, [sort]);
 
   return (
     <div>
       <Head>
-        <title>PC GAME DEALS</title>
+        <title>PC GAME DEALS - Home</title>
       </Head>
-      <Navbar />
-      <div className='nav-buffer'></div>
       <div className='page-container'>
-        <h1 className={style.title}>TOP AAA DEALS</h1>
+        <div className={"header"}>
+          <h1 className={"title"}>AAA TITLES</h1>
+        </div>
         <GameCard games={gameResults} fetchNextPage={fetchNextPage} />
         {loading && (
-          <div className={"loader"}>
+          <div className='loader'>
             <p>Loading...</p>
+          </div>
+        )}
+        {resultsMessage && (
+          <div className='loader'>
+            {gameResults.length > 0 ? (
+              <p>End of results...</p>
+            ) : (
+              <p>No results found...</p>
+            )}
           </div>
         )}
         <TopButton />
@@ -64,10 +121,19 @@ export default function Home({ games }) {
 
 export const getStaticProps = async () => {
   let games = null;
+  let page = 0;
+
+  const sort = {
+    direction: 0,
+    sortBy: "savings",
+    upperPrice: 15,
+    reviews: 0,
+    metacritic: 0,
+  };
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=15&AAA=1&pageNumber=0&pageSize=20`
+      `${process.env.NEXT_PUBLIC_FETCH_URL}&onSale=1&upperPrice=${sort.upperPrice}&pageNumber=${page}&pageSize=20&sortBy=${sort.sortBy}&desc=${sort.direction}&steamRating=${sort.reviews}&metacritic=${sort.metacritic}`
     );
     if (res.status !== 200) {
       return console.log("Failed to fetch" + res.status);

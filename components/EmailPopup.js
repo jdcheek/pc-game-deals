@@ -79,14 +79,12 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
               />
             </div>
           </div>
-          <div className={style.subBtns}>
-            <button onClick={handleEditNotifications}>
-              EDIT NOTIFICATIONS
-            </button>
-            <button type='submit' onClick={handleFormSubmit}>
-              SAVE
-            </button>
-          </div>
+        </div>
+        <div className={style.subBtns}>
+          <button onClick={handleEditNotifications}>EDIT NOTIFICATIONS</button>
+          <button type='submit' onClick={handleFormSubmit}>
+            SAVE
+          </button>
         </div>
       </div>
     </div>

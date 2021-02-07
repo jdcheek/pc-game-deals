@@ -33,7 +33,6 @@ export default function SortPopup({
     setToggleSortPopup(false);
   };
 
-  console.log(sortState);
   return (
     <div className='overlay'>
       <div className='popup'>
