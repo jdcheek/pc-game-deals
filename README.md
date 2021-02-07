@@ -10,6 +10,8 @@ The [Cheapshark api](https://apidocs.cheapshark.com/) is open, no key required.
 
 ### Quick Start
 
-`npm install`
-`npm run build`
-`npm run start`
+```
+npm install
+npm run build
+npm run start
+```
