@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { slide as Menu } from "react-burger-menu";
+
 import style from "../styles/Navbar.module.css";
 
 export default function Navbar() {
+  const [menuOpenState, setMenuOpenState] = useState(true);
+
+  const stateChangeHandler = (newState) => {
+    setMenuOpenState(newState.isOpen);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setMenuOpenState(!menuOpenState);
+  };
+
   return (
     <div className={style.container}>
       <div className={style.navbar}>
@@ -18,10 +31,26 @@ export default function Navbar() {
             <a>search</a>
           </Link>
         </div>
-        <div className={style.burger}>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className={style.menu}>
+          <Menu
+            isOpen={menuOpenState}
+            onStateChange={(state) => stateChangeHandler(state)}>
+            <div className='menu-item' onClick={(e) => handleClick(e)}>
+              <Link href='/'>
+                <a>HOME</a>
+              </Link>
+            </div>
+            <div className='menu-item' onClick={(e) => handleClick(e)}>
+              <Link href='/browse'>
+                <a>BROWSE</a>
+              </Link>
+            </div>
+            <div className='menu-item' onClick={(e) => handleClick(e)}>
+              <Link href='/search'>
+                <a>SEARCH</a>
+              </Link>
+            </div>
+          </Menu>
         </div>
       </div>
     </div>
