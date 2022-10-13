@@ -26,7 +26,6 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
   };
 
   const handleEditNotifications = async () => {
-    console.log(emailFormState);
     if (emailFormState.email !== "") {
       try {
         const res = await fetch(
