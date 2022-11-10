@@ -2,8 +2,8 @@
 
 :root {
   --primary-gray: #0d1117;
-  --secondary-gray: #303030;
-  --terciary-gray: #3f4346;
+  --secondary-gray: #181e2a;
+  --terciary-gray: #1f2b34;
   --primary-blue: #098ee6;
   --secondary-blue: #63b1e6;
   --primary-white: #b4b2b0;
@@ -21,7 +21,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+  background-image: url("../public/bg3.jpg");
+  background-attachment: fixed;
+  background-attachment: center;
+  background-repeat: no-repeat;
+  height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
