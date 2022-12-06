@@ -49,11 +49,11 @@ function GameCard({ games, fetchNextPage }) {
     <div className='gamecard-container'>
       {games.map((game) => (
         <div key={game.dealID} className='gamecard'>
+          <div className={style.content}>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
             <span>{game.steamRatingPercent}%</span>
           </div>
-          <div className={style.content}>
             <div className={style.thumb}>
               <img src={game.thumb} alt={`${game.title} thumbnail`} />
             </div>
@@ -76,7 +76,6 @@ function GameCard({ games, fetchNextPage }) {
               onClick={(e) => dropDownOnClickHandler(game.dealID)}>
               {toggle.id === game.dealID ? <LessIcon /> : <MoreIcon />}
             </div>
-            {toggle.id === game.dealID ? (
               <div className={style.dropdown}>
                 <div className={style.actions}>
                   <span>Metacritic Score: {game.metacriticScore}</span>
@@ -102,7 +101,6 @@ function GameCard({ games, fetchNextPage }) {
                   </a>
                 </div>
               </div>
-            ) : null}
           </div>
         </div>
       ))}

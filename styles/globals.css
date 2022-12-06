@@ -164,6 +164,7 @@ button:hover {
   background-color: var(--terciary-gray);
   border-radius: var(--small-radius);
   margin: 0.6rem;
+  transition-duration: 1s;
 }
 
 .loader {
