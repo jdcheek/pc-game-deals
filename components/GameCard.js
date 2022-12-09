@@ -8,23 +8,11 @@ import LessIcon from "./svg/LessIcon";
 
 function GameCard({ games, fetchNextPage }) {
   const [toggleEmailPopup, setToggleEmailPopup] = useState(false);
-  const [toggle, setToggle] = useState({
-    isToggled: false,
-    id: "",
-  });
+  const [toggleId, setToggleId] = useState("");
 
   const dropDownOnClickHandler = (dealID) => {
-    if (toggle.id === dealID) {
-      setToggle({
-        isToggled: false,
-        id: "",
-      });
-    } else if (toggle.id !== dealID) {
-      setToggle({
-        isToggled: !toggle.isToggled,
-        id: dealID,
-      });
-    }
+    if (toggleId === dealID) setToggleId("");
+    if (toggleId !== dealID) setToggleId(dealID);
   };
 
   useEffect(() => {
@@ -48,7 +36,7 @@ function GameCard({ games, fetchNextPage }) {
   return (
     <div className='gamecard-container'>
       {games.map((game) => (
-        <div key={game.dealID} className='gamecard'>
+        <div key={game.dealID} className={style.gamecard} onClick={() => dropDownOnClickHandler(game.dealID)}>
           <div className={style.content}>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
@@ -71,12 +59,10 @@ function GameCard({ games, fetchNextPage }) {
                 {Math.floor(game.savings)}% OFF
               </span>
             </div>
-            <div
-              className={style.arrow}
-              onClick={(e) => dropDownOnClickHandler(game.dealID)}>
-              {toggle.id === game.dealID ? <LessIcon /> : <MoreIcon />}
+            <div className={style.arrow}>
+              {toggleId === game.dealID ? <LessIcon /> : <MoreIcon />}
             </div>
-              <div className={style.dropdown}>
+              <div className={toggleId === game.dealID ? style.dropdown : style.hidden}>
                 <div className={style.actions}>
                   <span>Metacritic Score: {game.metacriticScore}</span>
                   <span>
@@ -107,7 +93,7 @@ function GameCard({ games, fetchNextPage }) {
       {toggleEmailPopup ? (
         <EmailPopup
           setToggleEmailPopup={setToggleEmailPopup}
-          gameID={toggle.id}
+          gameID={toggleId}
         />
       ) : null}
     </div>
