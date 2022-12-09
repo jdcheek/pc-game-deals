@@ -9,7 +9,7 @@
   --primary-white: #b4b2b0;
   --alert-red: #af5858;
   --positive-green: #84ab76;
-  --small-radius: 0.1rem;
+  --small-radius: 4px; 
 }
 
 /* Resets */
