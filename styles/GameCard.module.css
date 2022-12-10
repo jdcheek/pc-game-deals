@@ -72,14 +72,16 @@
 }
 
 .hidden {
-  display: none;
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
 }
 
 .gamecard {
   display: flex;
   flex: 1 1 100%;
   width: 100%;
-  height: auto;
+  height: 100px;
   background-color: var(--terciary-gray);
   border-radius: var(--small-radius);
   margin: 0.6rem;
@@ -94,8 +96,9 @@
 .dropdown {
   display: flex;
   flex: 1 1 100%;
-  min-height: 100px;
+  height: 100px;
   padding: 5px;
+  transition: ease height .3s;
   justify-content: space-between;
 }
 
@@ -121,6 +124,7 @@
   align-self: center;
   height: 24px;
 }
+
 
 @media screen and (max-width: 1000px) {
   .title,
