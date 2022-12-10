@@ -9,7 +9,7 @@
   --primary-white: #b4b2b0;
   --alert-red: #af5858;
   --positive-green: #84ab76;
-  --small-radius: 0.1rem;
+  --small-radius: 4px; 
 }
 
 /* Resets */
@@ -154,16 +154,6 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.gamecard {
-  display: flex;
-  flex: 1 1 100%;
-  width: 100%;
-  height: auto;
-  background-color: var(--terciary-gray);
-  border-radius: var(--small-radius);
-  margin: 0.6rem;
 }
 
 .loader {
