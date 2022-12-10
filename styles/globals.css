@@ -149,6 +149,18 @@ button:hover {
 }
 /* Game card styles */
 
+.gamecard {                                                                                                                                                                                                                           
+display: flex;                                                                                                                                                                                                                      
+flex: 1 1 100%;                                                                                                                                                                                                                     
+width: 100%;                                                                                                                                                                                                                        
+height: 100px;                                                                                                                                                                                                                      
+background-color: var(--terciary-gray);                                                                                                                                                                                             
+border-radius: var(--small-radius);                                                                                                                                                                                                 
+margin: 0.6rem;                                                                                                                                                                                                                     
+transition: ease .3s;                                                                                                                                                                                                               
+cursor: pointer;                                                                                                                                                                                                                    
+}                
+
 .gamecard-container {
   display: flex;
   flex-direction: column;

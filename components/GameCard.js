@@ -36,7 +36,7 @@ function GameCard({ games, fetchNextPage }) {
   return (
     <div className='gamecard-container'>
       {games.map((game) => (
-        <div key={game.dealID} className={style.gamecard} onClick={() => dropDownOnClickHandler(game.dealID)}>
+        <div key={game.dealID} className="gamecard" onClick={() => dropDownOnClickHandler(game.dealID)}>
           <div className={style.content}>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
