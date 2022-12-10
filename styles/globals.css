@@ -159,10 +159,12 @@ border-radius: var(--small-radius);
 margin: 0.6rem;                                                                                                                                                                                                                     
 transition: ease .3s;                                                                                                                                                                                                               
 cursor: pointer;                                                                                                                                                                                                                    
+opacity: .6;
 }                
 
 .gamecard:hover {
   transform: scale(1.009);
+  opacity: 1;
 }
 
 .gamecard-container {

@@ -80,7 +80,7 @@
 .dropdown {
   display: flex;
   flex: 1 1 100%;
-  height: 100px;
+  height: 125px;
   padding: 5px;
   transition: ease height .3s;
   justify-content: space-between;

@@ -36,15 +36,12 @@ function GameCard({ games, fetchNextPage }) {
   return (
     <div className='gamecard-container'>
       {games.map((game) => (
-        <div key={game.dealID} className="gamecard" onClick={() => dropDownOnClickHandler(game.dealID)}>
+        <div key={game.dealID} className="gamecard" style={{backgroundImage: `url(https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steamAppID}/header.jpg?t=${game.thumb.split("=").pop()})`, backgroundBlendMode: "overlay", backgroundRepeat: "no-repeat"}} onClick={() => dropDownOnClickHandler(game.dealID)}>
           <div className={style.content}>
           <div className={style.steamRating}>
             <h1>steam rating</h1>
             <span>{game.steamRatingPercent}%</span>
           </div>
-            <div className={style.thumb}>
-              <img src={game.thumb} alt={`${game.title} thumbnail`} />
-            </div>
             <span className={style.title}>
               {game.title.length > 60
                 ? game.title.slice(0, -20) + "..."
