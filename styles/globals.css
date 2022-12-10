@@ -161,6 +161,10 @@ transition: ease .3s;
 cursor: pointer;                                                                                                                                                                                                                    
 }                
 
+.gamecard:hover {
+  transform: scale(1.009);
+}
+
 .gamecard-container {
   display: flex;
   flex-direction: column;
