@@ -1,6 +1,6 @@
 ## PC-GAME-DEALS with NextJS
 
-This is a website I built as an exercise in NextJS and is deployed on Netlify at [pc-game-deals.netlify.app](https://pc-game-deals.netlify.app/)
+This is a website I built as an exercise in NextJS and is deployed [here](https://www.pcgame.deals/)
 
 ---
 
