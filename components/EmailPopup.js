@@ -56,9 +56,6 @@ focusRef.current.focus();
   return (
     <div className='overlay' ref={focusRef} tabIndex={0} onKeyDown={(event) => event.key === "Escape" && setToggleEmailPopup(false)}>
       <div className='popup'>
-        <div className={style.closeBtn}>
-          <button onClick={() => setToggleEmailPopup(false)}>CLOSE</button>
-        </div>
         <div className={style.content}>
           <div className={style.inputContainer}>
             <div className={style.emailInput}>
@@ -87,9 +84,12 @@ focusRef.current.focus();
         </div>
         <div className={style.subBtns}>
           <button onClick={handleEditNotifications}>EDIT NOTIFICATIONS</button>
-          <button type='submit' onClick={handleFormSubmit}>
-            SAVE
-          </button>
+          <div className={style.closeBtn}>
+            <button type='submit' onClick={handleFormSubmit} style={{margin: "10px"}}>
+              SAVE
+            </button>
+            <button onClick={() => setToggleEmailPopup(false)}>CLOSE</button>
+          </div>
         </div>
       </div>
     </div>
