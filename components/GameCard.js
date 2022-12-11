@@ -80,7 +80,7 @@ function GameCard({ games, fetchNextPage }) {
                     onClick={() => setToggleEmailPopup(true)}
                     className={style.iconAction}>
                     <EmailIcon />
-                    <span>Set up price notification</span>
+                    <span>Price Notify</span>
                   </a>
                 </div>
               </div>
