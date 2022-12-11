@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import style from "../styles/EmailPopup.module.css";
 
 export default function EmailPopup({ setToggleEmailPopup, gameID }) {
@@ -6,6 +6,12 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
     email: "",
     price: "0.00",
   });
+
+  const focusRef = useRef(null);
+
+  useEffect(() => {
+focusRef.current.focus();
+}, []);
 
   const handleInputChange = (e) => {
     setEmailFormState({ ...emailFormState, [e.target.name]: e.target.value });
@@ -48,7 +54,7 @@ export default function EmailPopup({ setToggleEmailPopup, gameID }) {
   };
 
   return (
-    <div className='overlay'>
+    <div className='overlay' ref={focusRef} tabIndex={0} onKeyDown={(event) => event.key === "Escape" && setToggleEmailPopup(false)}>
       <div className='popup'>
         <div className={style.closeBtn}>
           <button onClick={() => setToggleEmailPopup(false)}>CLOSE</button>
