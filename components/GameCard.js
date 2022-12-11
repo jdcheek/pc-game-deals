@@ -74,7 +74,7 @@ function GameCard({ games, fetchNextPage }) {
                     target='_blank'
                     className={style.iconAction}>
                     <SteamIcon />
-                    <span>View steam page</span>
+                    <span>Steam Page</span>
                   </a>
                   <a
                     onClick={() => setToggleEmailPopup(true)}
