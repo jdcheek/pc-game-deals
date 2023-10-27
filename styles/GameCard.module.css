@@ -137,8 +137,4 @@
   .iconAction a {
     padding: 0;
   }
-
-  .dropdown {
-    flex-direction: column;
-  }
 }
